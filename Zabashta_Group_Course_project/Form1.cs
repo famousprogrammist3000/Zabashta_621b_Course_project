@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace Zabashta_Group_Course_project
 {
+
     public partial class Form1 : Form
     {
         private bool Mode; // Режим дозволу / заборони введення даних
@@ -43,6 +44,7 @@ namespace Zabashta_Group_Course_project
             A.tAbout.Start();
             A.ShowDialog(); // відображення діалогового вікна About
             MajorObject = new MajorWork();
+            MajorObject.SetTime();
             this.Mode = true;
         }
 
@@ -84,6 +86,13 @@ namespace Zabashta_Group_Course_project
                 e.KeyChar = (char)0;
             }
 
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string s;
+            s = (System.DateTime.Now - MajorObject.GetTime()).ToString();
+            MessageBox.Show(s, "Час роботи програми");
         }
     }
 }
