@@ -6,8 +6,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Buffer = Zabashta_Group_Course_project.Buffer;
 
-namespace Surname_Group_Course_project
+namespace Zabashta_Group_Course_project
 {
 
     class MajorWork
