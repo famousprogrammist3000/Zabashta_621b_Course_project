@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
+
 namespace Zabashta_Group_Course_project
 {
 
@@ -47,6 +48,7 @@ namespace Zabashta_Group_Course_project
             MajorObject = new MajorWork();
             MajorObject.SetTime();
             this.Mode = true;
+            MajorObject.Modify = false;// заборона запису
         }
 
         private void bStart_Click(object sender, EventArgs e)
@@ -113,7 +115,8 @@ namespace Zabashta_Group_Course_project
         {
             if (sfdSave.ShowDialog() == DialogResult.OK)// Виклик діалогового вікна збереження
 {
-                MessageBox.Show(sfdSave.FileName);
+                MajorObject.WriteSaveFileName(sfdSave.FileName); // написання імені файлу
+                MajorObject.SaveToFile(); // метод збереження в файл
             }
         }
 
@@ -135,19 +138,16 @@ namespace Zabashta_Group_Course_project
                 try
                 {
                     System.IO.DriveInfo D = new System.IO.DriveInfo(disks[i]);
-                    double totalSizeGB = D.TotalSize / (1024.0 * 1024 * 1024); // Перетворення байтів у гігабайти
-                    double freeSpaceGB = D.TotalFreeSpace / (1024.0 * 1024 * 1024); // Перетворення байтів у гігабайти
-                    disk += D.Name + "-" + totalSizeGB.ToString("F2") + " GB - " + freeSpaceGB.ToString("F2") + " GB" + (char)13; // Змінній присвоюється ім’я диска, загальна кількість місця і вільне місце на диску в ГБ
+                    disk += D.Name + "-" + D.TotalSize.ToString() + "-" + D.TotalFreeSpace.ToString()
+                    + (char)13;// змінній присвоюється ім’я диска, загальна кількість місця и вільне місце на диску
                 }
                 catch
                 {
-                    disk += disks[i] + "- не готовий" + (char)13; // Якщо пристрій не готовий
-                }
+                    disk += disks[i] + "- не готовий" + (char)13; // якщо пристрій не готовий
+}
             }
 
             MessageBox.Show(disk, "Накопичувачі");
         }
-
     }
 }
-
