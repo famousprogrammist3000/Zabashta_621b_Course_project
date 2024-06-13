@@ -123,14 +123,14 @@ namespace Zabashta_Group_Course_project
 
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ofdOpen.ShowDialog() == DialogResult.OK) // Виклик діалогового вікна відкриття          
+            if (ofdOpen.ShowDialog() == DialogResult.OK) // Виклик діалогу відкриття файлу
 
             {
-                MessageBox.Show(ofdOpen.FileName);
+                MajorObject.WriteOpenFileName(ofdOpen.FileName); // відкриття
+                MajorObject.ReadFromFile(dgwOpen); // читання даних з файлу
             }
         }
-
-        private void проНакопичувачіToolStripMenuItem_Click(object sender, EventArgs e)
+            private void проНакопичувачіToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string[] disks = System.IO.Directory.GetLogicalDrives(); // Строковий масив з
             string disk = "";
@@ -177,6 +177,11 @@ namespace Zabashta_Group_Course_project
                 if (MessageBox.Show("Дані не були збережені. Продовжити вихід?", "УВАГА",
                 MessageBoxButtons.YesNo) == DialogResult.No)
                     e.Cancel = true; // припинити закриття
+        }
+
+        private void bSearch_Click(object sender, EventArgs e)
+        {
+            MajorObject.Find(tbSearch.Text); //пошук
         }
     }
 }
