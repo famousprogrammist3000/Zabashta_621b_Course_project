@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Buffer = Zabashta_Group_Course_project.Buffer;
+using System.Collections;
 
 namespace Zabashta_Group_Course_project
 {
@@ -19,6 +20,10 @@ namespace Zabashta_Group_Course_project
         private int Key; // поле ключа
         private string SaveFileName; // ім’я файлу для запису
         private string OpenFileName; // ім’я файлу для читання
+        public Stack myStack = new Stack();
+        public string[] myArr = new string[100];
+        public Queue myQueue = new Queue();
+        public string[] smyQueue = new string[100];
 
         public void SetTime() // метод запису часу початку роботи програми
         {
